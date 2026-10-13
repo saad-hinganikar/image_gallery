@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Image Gallery</title>
+
+    <!-- Apply saved theme before paint to avoid a flash -->
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem("gallery-theme");
+                var dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                document.documentElement.dataset.theme = saved || (dark ? "dark" : "light");
+            } catch (e) {
+                document.documentElement.dataset.theme = "light";
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="titles">
+            <h1>My Image Gallery</h1>
+            <p>Explore beautiful moments</p>
+        </div>
+
+        <div class="tools">
+            <input type="search" id="search" placeholder="Search photos" aria-label="Search photos" autocomplete="off">
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode">Dark</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Category Filters -->
+        <nav class="filters" aria-label="Filter photos by category">
+            <button class="filter active" data-category="all">All <span class="count"></span></button>
+            <button class="filter" data-category="nature">Nature <span class="count"></span></button>
+            <button class="filter" data-category="city">City <span class="count"></span></button>
+            <button class="filter" data-category="animal">Animals <span class="count"></span></button>
+            <button class="filter" data-category="self_photo">Personal <span class="count"></span></button>
+            <button class="filter" data-category="favorites">Favorites <span class="count"></span></button>
+        </nav>
+
+        <p class="result-count" id="result-count" aria-live="polite"></p>
+
+        <!-- Gallery -->
+        <div class="gallery" id="gallery">
+
+            <figure class="gallery-item" data-category="nature" data-title="Nature 1" tabindex="0">
+                <img src="images/nature1.jpg" alt="Nature 1" loading="lazy">
+                <figcaption>Nature 1</figcaption>
+                <button class="fav" type="button" aria-label="Add to favorites" aria-pressed="false">&#9829;</button>
+            </figure>
+
+            <figure class="gallery-item" data-category="nature" data-title="Nature 2" tabindex="0">
+                <img src="images/nature2.jpg" alt="Nature 2" loading="lazy">
+                <figcaption>Nature 2</figcaption>
+                <button class="fav" type="button" aria-label="Add to favorites" aria-pressed="false">&#9829;</button>
+            </figure>
+
+            <figure class="gallery-item" data-category="nature" data-title="Nature 3" tabindex="0">
+                <img src="images/nature3.jpg" alt="Nature 3" loading="lazy">
+                <figcaption>Nature 3</figcaption>
+                <button class="fav" type="button" aria-label="Add to favorites" aria-pressed="false">&#9829;</button>
+            </figure>
+
+            <figure class="gallery-item" data-category="city" data-title="City 1" tabindex="0">
+                <img src="images/city1.jpg" alt="City 1" loading="lazy">
+                <figcaption>City 1</figcaption>
+                <button class="fav" type="button" aria-label="Add to favorites" aria-pressed="false">&#9829;</button>
+            </figure>
+
+            <figure class="gallery-item" data-category="city" data-title="City 2" tabindex="0">
+                <img src="images/city2.jpg" alt="City 2" loading="lazy">
+                <figcaption>City 2</figcaption>
+                <button class="fav" type="button" aria-label="Add to favorites" aria-pressed="false">&#9829;</button>
+            </figure>
+
+            <!-- Fixed: this was a duplicate of city2.jpg -->
+            <figure class="gallery-item" data-category="city" data-title="City 3" tabindex="0">
+                <img src="images/city3.jpg" alt="City 3" loading="lazy">
+                <figcaption>City 3</figcaption>
+                <button class="fav" type="button" aria-label="Add to favorites" aria-pressed="false">&#9829;</button>
+            </figure>
+
+            <figure class="gallery-item" data-category="animal" data-title="Animal 1" tabindex="0">
+                <img src="images/animal1.jpg" alt="Animal 1" loading="lazy">
+                <figcaption>Animal 1</figcaption>
+                <button class="fav" type="button" aria-label="Add to favorites" aria-pressed="false">&#9829;</button>
+            </figure>
+
+            <figure class="gallery-item" data-category="animal" data-title="Animal 2" tabindex="0">
+                <img src="images/animal2.jpg" alt="Animal 2" loading="lazy">
+                <figcaption>Animal 2</figcaption>
+                <button class="fav" type="button" aria-label="Add to favorites" aria-pressed="false">&#9829;</button>
+            </figure>
+
+            <figure class="gallery-item" data-category="animal" data-title="Animal 3" tabindex="0">
+                <img src="images/animal3.jpg" alt="Animal 3" loading="lazy">
+                <figcaption>Animal 3</figcaption>
+                <button class="fav" type="button" aria-label="Add to favorites" aria-pressed="false">&#9829;</button>
+            </figure>
+
+            <figure class="gallery-item" data-category="self_photo" data-title="Personal 1" tabindex="0">
+                <img src="images/image1.jpeg" alt="Personal photo 1" loading="lazy">
+                <figcaption>Personal 1</figcaption>
+                <button class="fav" type="button" aria-label="Add to favorites" aria-pressed="false">&#9829;</button>
+            </figure>
+
+            <figure class="gallery-item" data-category="self_photo" data-title="Personal 2" tabindex="0">
+                <img src="images/image2.jpeg" alt="Personal photo 2" loading="lazy">
+                <figcaption>Personal 2</figcaption>
+                <button class="fav" type="button" aria-label="Add to favorites" aria-pressed="false">&#9829;</button>
+            </figure>
+
+            <figure class="gallery-item" data-category="self_photo" data-title="Personal 3" tabindex="0">
+                <img src="images/image3.jpeg" alt="Personal photo 3" loading="lazy">
+                <figcaption>Personal 3</figcaption>
+                <button class="fav" type="button" aria-label="Add to favorites" aria-pressed="false">&#9829;</button>
+            </figure>
+
+        </div>
+
+        <p class="empty-state" id="empty-state" hidden>
+            No photos match. Try another category or clear the search.
+        </p>
+    </main>
+
+    <button class="to-top" id="to-top" type="button" aria-label="Back to top" hidden>&#8593;</button>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+
+        <div class="lb-topbar">
+            <span class="lb-counter" id="lb-counter"></span>
+            <div class="lb-actions">
+                <button class="lb-btn" id="lb-fav" type="button" aria-pressed="false" aria-label="Add to favorites">&#9829; Favorite</button>
+                <button class="lb-btn" id="lb-play" type="button" aria-pressed="false">Play slideshow</button>
+                <a class="lb-btn" id="lb-download" download>Download</a>
+                <button class="lb-btn" id="lb-fullscreen" type="button">Fullscreen</button>
+                <button class="lb-btn close" id="lb-close" type="button" aria-label="Close viewer">&times;</button>
+            </div>
+        </div>
+
+        <button class="nav prev" id="lb-prev" type="button" aria-label="Previous photo">&#10094;</button>
+
+        <figure class="lb-stage">
+            <img id="lightbox-img" src="" alt="">
+            <figcaption id="lb-caption"></figcaption>
+        </figure>
+
+        <button class="nav next" id="lb-next" type="button" aria-label="Next photo">&#10095;</button>
+
+    </div>
+
+    <script src="app1.js"></script>
+
+</body>
+</html>
